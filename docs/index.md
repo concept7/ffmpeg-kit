@@ -1,55 +1,57 @@
 # FFmpegKit
 
 ## Notice
+
 FFmpegKit has been officially retired. There will be no further `ffmpeg-kit` releases. All previously released `ffmpeg-kit` binaries will be removed according to the following schedule. Thank you for your support and interest in this project.
 
 Thank you for your support and contributions over the course of this project.
 
 | FFmpegKit Version |  Available Until   |
-|:-----------------:|:------------------:|
+| :---------------: | :----------------: |
 |   Less than 6.0   | February 1st, 2025 |
 |        6.0        |  April 1st, 2025   |
 
-<img src="https://github.com/arthenica/ffmpeg-kit/raw/main/docs/assets/ffmpeg-kit-icon-v9.png" width="180">
+<img src="https://github.com/concept7/ffmpeg-kit/raw/main/docs/assets/ffmpeg-kit-icon-v9.png" width="180">
 
 `FFmpegKit` is a collection of tools to use `FFmpeg` in `Android`, `iOS`, `Linux`, `macOS`, `tvOS`, `Flutter` and `React Native` applications.
 
 It includes scripts to build `FFmpeg` native libraries, a wrapper library to run `FFmpeg`/`FFprobe` commands in
-applications and 8 prebuilt binary packages available at [Github](https://github.com/arthenica/ffmpeg-kit/releases),
+applications and 8 prebuilt binary packages available at [Github](https://github.com/concept7/ffmpeg-kit/releases),
 [Maven Central](https://search.maven.org), [CocoaPods](https://cocoapods.org), [pub](https://pub.dev) and [npm](https://www.npmjs.com).
 
 ### 1. Features
+
 - Scripts to build FFmpeg native libraries
 - `FFmpegKit` wrapper library to run `FFmpeg`/`FFprobe` commands in applications
 - Supports native platforms: Android, iOS, Linux, macOS and tvOS
 - Supports hybrid platforms: Flutter, React Native
 - Based on FFmpeg `v4.5-dev` or later with optional system and external libraries
-- 8 prebuilt binary packages available at [Github](https://github.com/arthenica/ffmpeg-kit/releases), [Maven Central](https://search.maven.org), [CocoaPods](https://cocoapods.org), [pub](https://pub.dev) and [npm](https://www.npmjs.com)
+- 8 prebuilt binary packages available at [Github](https://github.com/concept7/ffmpeg-kit/releases), [Maven Central](https://search.maven.org), [CocoaPods](https://cocoapods.org), [pub](https://pub.dev) and [npm](https://www.npmjs.com)
 - Licensed under `LGPL 3.0` by default, some packages licensed by `GPL v3.0` effectively
 
 ### 2. Android
 
-See [Android](https://github.com/arthenica/ffmpeg-kit/tree/development/android) to learn more about `FFmpegKit` for
+See [Android](https://github.com/concept7/ffmpeg-kit/tree/development/android) to learn more about `FFmpegKit` for
 `Android`.
 
 ### 3. iOS, macOS, tvOS
 
-See [Apple](https://github.com/arthenica/ffmpeg-kit/tree/development/apple) to use `FFmpegKit` on `Apple` platforms
+See [Apple](https://github.com/concept7/ffmpeg-kit/tree/development/apple) to use `FFmpegKit` on `Apple` platforms
 (`iOS`, `macOS`, `tvOS`).
 
 ### 4. Flutter
 
-See [Flutter](https://github.com/arthenica/ffmpeg-kit/tree/main/flutter/flutter) to learn more about `FFmpegKit` for
+See [Flutter](https://github.com/concept7/ffmpeg-kit/tree/main/flutter/flutter) to learn more about `FFmpegKit` for
 `Flutter`.
 
 ### 5. Linux
 
-See [Linux](https://github.com/arthenica/ffmpeg-kit/tree/main/linux) to learn more about `FFmpegKit` for
+See [Linux](https://github.com/concept7/ffmpeg-kit/tree/main/linux) to learn more about `FFmpegKit` for
 `Linux`.
 
 ### 6. React Native
 
-See [React Native](https://github.com/arthenica/ffmpeg-kit/tree/main/react-native) to learn more about `FFmpegKit` for
+See [React Native](https://github.com/concept7/ffmpeg-kit/tree/main/react-native) to learn more about `FFmpegKit` for
 `React Native`.
 
 ### 7. Build Scripts
@@ -57,7 +59,7 @@ See [React Native](https://github.com/arthenica/ffmpeg-kit/tree/main/react-nativ
 Use `android.sh`, `ios.sh`, `linux.sh`, `macos.sh` and `tvos.sh` to build `FFmpegKit` for each native platform.
 
 All scripts support additional options to enable optional libraries and disable platform architectures. See
-[Building](https://github.com/arthenica/ffmpeg-kit/wiki/Building) wiki page for the details.
+[Building](https://github.com/concept7/ffmpeg-kit/wiki/Building) wiki page for the details.
 
 ### 8. FFmpegKit Library
 
@@ -72,7 +74,7 @@ a `JavaScript` API with `Typescript` definitions, which are identical in terms o
 ### 9. Packages
 
 There are eight different `ffmpeg-kit` packages distributed on
-[Github](https://github.com/arthenica/ffmpeg-kit/releases),
+[Github](https://github.com/concept7/ffmpeg-kit/releases),
 [Maven Central](https://search.maven.org), [CocoaPods](https://cocoapods.org), [pub](https://pub.dev) and
 [npm](https://www.npmjs.com).
 Below you can see which system libraries and external libraries are enabled in each one of them.
@@ -122,28 +124,28 @@ the same `FFmpeg` release branch.
 `dev` part in the version string indicates that `FFmpeg` source code is cloned from the `FFmpeg` `master` branch and
 the exact version number of `FFmpeg` is obtained using the `git describe --tags` command.
 
-|    Platforms     |                                  FFmpegKit Version                                  | FFmpeg Version | Release Date |
-|:----------------:|:-----------------------------------------------------------------------------------:|:--------------:|:------------:|
-|     Flutter      |   [6.0.3](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v6.0.3)    |      6.0       | Sep 19, 2023 |
-|   React Native   | [6.0.2](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v6.0.2) |      6.0       | Sep 19, 2023 |
-|     Flutter      |   [6.0.2](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v6.0.2)    |      6.0       | Sep 03, 2023 |
-|   React Native   | [6.0.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v6.0.1) |      6.0       | Sep 03, 2023  |
-|     Flutter      |   [6.0.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v6.0.1)    |      6.0       | Sep 03, 2023 |
-|   React Native   | [6.0.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v6.0.0) |      6.0       | Aug 27, 2023 |
-|     Flutter      |   [6.0.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v6.0.0)    |      6.0       | Aug 27, 2023 |
-|      Android<br>Apple       |         [6.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/v6.0)          |      6.0       | Aug 21, 2023 |
-|   React Native   | [5.1.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v5.1.0) |     5.1.2      | Oct 02, 2022 |
-|     Flutter      |   [5.1.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v5.1.0)    |     5.1.2      | Oct 02, 2022 |
-|     Android<br>Apple      |         [5.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/v5.1)          |     5.1.2      | Sep 29, 2022 |
-|   React Native   | [4.5.2](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v4.5.2) |  4.5-dev-3393  | May 25, 2022 |
-|     Flutter      |   [4.5.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v4.5.1)    |  4.5-dev-3393  | Jan 02, 2022 |
-|   React Native   | [4.5.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v4.5.1) |  4.5-dev-3393  | Jan 02, 2022 |
-|     Android      |       [4.5.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/v4.5.1)        |  4.5-dev-3393  | Jan 01, 2022 |
-|      Apple       |       [4.5.1](https://github.com/arthenica/ffmpeg-kit/releases/tag/v4.5.1)        |  4.5-dev-3393  | Dec 30, 2021 |
-|     Flutter      |   [4.5.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/flutter.v4.5.0)    |  4.5-dev-2008  | Oct 05, 2021 |
-|   React Native   | [4.5.0](https://github.com/arthenica/ffmpeg-kit/releases/tag/react.native.v4.5.0) |  4.5-dev-2008  | Oct 01, 2021 |
-| Android<br>Apple |         [4.5](https://github.com/arthenica/ffmpeg-kit/releases/tag/v4.5)          |  4.5-dev-2008  | Sep 18, 2021 |
-| Android<br>Apple |         [4.4](https://github.com/arthenica/ffmpeg-kit/releases/tag/v4.4)          |  4.4-dev-3015  | Mar 03, 2021 |
+|    Platforms     |                                FFmpegKit Version                                 | FFmpeg Version | Release Date |
+| :--------------: | :------------------------------------------------------------------------------: | :------------: | :----------: |
+|     Flutter      |   [6.0.3](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v6.0.3)    |      6.0       | Sep 19, 2023 |
+|   React Native   | [6.0.2](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v6.0.2) |      6.0       | Sep 19, 2023 |
+|     Flutter      |   [6.0.2](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v6.0.2)    |      6.0       | Sep 03, 2023 |
+|   React Native   | [6.0.1](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v6.0.1) |      6.0       | Sep 03, 2023 |
+|     Flutter      |   [6.0.1](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v6.0.1)    |      6.0       | Sep 03, 2023 |
+|   React Native   | [6.0.0](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v6.0.0) |      6.0       | Aug 27, 2023 |
+|     Flutter      |   [6.0.0](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v6.0.0)    |      6.0       | Aug 27, 2023 |
+| Android<br>Apple |         [6.0](https://github.com/concept7/ffmpeg-kit/releases/tag/v6.0)          |      6.0       | Aug 21, 2023 |
+|   React Native   | [5.1.0](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v5.1.0) |     5.1.2      | Oct 02, 2022 |
+|     Flutter      |   [5.1.0](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v5.1.0)    |     5.1.2      | Oct 02, 2022 |
+| Android<br>Apple |         [5.1](https://github.com/concept7/ffmpeg-kit/releases/tag/v5.1)          |     5.1.2      | Sep 29, 2022 |
+|   React Native   | [4.5.2](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v4.5.2) |  4.5-dev-3393  | May 25, 2022 |
+|     Flutter      |   [4.5.1](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v4.5.1)    |  4.5-dev-3393  | Jan 02, 2022 |
+|   React Native   | [4.5.1](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v4.5.1) |  4.5-dev-3393  | Jan 02, 2022 |
+|     Android      |       [4.5.1](https://github.com/concept7/ffmpeg-kit/releases/tag/v4.5.1)        |  4.5-dev-3393  | Jan 01, 2022 |
+|      Apple       |       [4.5.1](https://github.com/concept7/ffmpeg-kit/releases/tag/v4.5.1)        |  4.5-dev-3393  | Dec 30, 2021 |
+|     Flutter      |   [4.5.0](https://github.com/concept7/ffmpeg-kit/releases/tag/flutter.v4.5.0)    |  4.5-dev-2008  | Oct 05, 2021 |
+|   React Native   | [4.5.0](https://github.com/concept7/ffmpeg-kit/releases/tag/react.native.v4.5.0) |  4.5-dev-2008  | Oct 01, 2021 |
+| Android<br>Apple |         [4.5](https://github.com/concept7/ffmpeg-kit/releases/tag/v4.5)          |  4.5-dev-2008  | Sep 18, 2021 |
+| Android<br>Apple |         [4.4](https://github.com/concept7/ffmpeg-kit/releases/tag/v4.4)          |  4.4-dev-3015  | Mar 03, 2021 |
 
 ### 11. LTS Releases
 
@@ -155,29 +157,29 @@ the exact version number of `FFmpeg` is obtained using the `git describe --tags`
 
 This table shows the differences between two variants.
 
-|        | Main Release |                        LTS Release                        |
-| :----: | :----: |:---------------------------------------------------------:|
-| Android API Level | 24 |                            16                             | 
-| Android Camera Access | Yes |                             -                             |
-| Android Architectures | arm-v7a-neon<br/>arm64-v8a<br/>x86<br/>x86-64 | arm-v7a<br/>arm-v7a-neon<br/>arm64-v8a<br/>x86<br/>x86-64 |
-| iOS Min SDK | 12.1 |                            10                             |
-| iOS VideoToolbox | Yes |                             -                             |
-| iOS AVFoundation | Yes |                             -                             |
-| iOS Architectures | arm64<br/>arm64-simulator<br/>arm64-mac-catalyst<br/>x86-64<br/>x86-64-mac-catalyst |            armv7<br/>arm64<br/>i386<br/>x86-64            |
-| iOS Bundle Format | XCFrameworks |                        Frameworks                         |
-| Mac Catalyst Min Version | 14.0 |                             -                             |
-| macOS Min SDK | 10.15 |                           10.12                           |
-| macOS AVFoundation | Yes |                             -                             |
-| macOS Architectures | arm64<br/>x86-64 |                          x86-64                           |
-| macOS Bundle Format | XCFrameworks |                        Frameworks                         |
-| tvOS Min SDK | 11.0 |                           10.0                            |
-| tvOS VideoToolbox | Yes |                             -                             |
-| tvOS Architectures | arm64<br/>x86-64<br/>arm64-simulator |                     arm64<br/>x86-64                      |
-| tvOS Bundle Format | XCFrameworks |                        Frameworks                         |
+|                          |                                    Main Release                                     |                        LTS Release                        |
+| :----------------------: | :---------------------------------------------------------------------------------: | :-------------------------------------------------------: |
+|    Android API Level     |                                         24                                          |                            16                             |
+|  Android Camera Access   |                                         Yes                                         |                             -                             |
+|  Android Architectures   |                    arm-v7a-neon<br/>arm64-v8a<br/>x86<br/>x86-64                    | arm-v7a<br/>arm-v7a-neon<br/>arm64-v8a<br/>x86<br/>x86-64 |
+|       iOS Min SDK        |                                        12.1                                         |                            10                             |
+|     iOS VideoToolbox     |                                         Yes                                         |                             -                             |
+|     iOS AVFoundation     |                                         Yes                                         |                             -                             |
+|    iOS Architectures     | arm64<br/>arm64-simulator<br/>arm64-mac-catalyst<br/>x86-64<br/>x86-64-mac-catalyst |            armv7<br/>arm64<br/>i386<br/>x86-64            |
+|    iOS Bundle Format     |                                    XCFrameworks                                     |                        Frameworks                         |
+| Mac Catalyst Min Version |                                        14.0                                         |                             -                             |
+|      macOS Min SDK       |                                        10.15                                        |                           10.12                           |
+|    macOS AVFoundation    |                                         Yes                                         |                             -                             |
+|   macOS Architectures    |                                  arm64<br/>x86-64                                   |                          x86-64                           |
+|   macOS Bundle Format    |                                    XCFrameworks                                     |                        Frameworks                         |
+|       tvOS Min SDK       |                                        11.0                                         |                           10.0                            |
+|    tvOS VideoToolbox     |                                         Yes                                         |                             -                             |
+|    tvOS Architectures    |                        arm64<br/>x86-64<br/>arm64-simulator                         |                     arm64<br/>x86-64                      |
+|    tvOS Bundle Format    |                                    XCFrameworks                                     |                        Frameworks                         |
 
 ### 12. Documentation
 
-A more detailed documentation is available under [Wiki](https://github.com/arthenica/ffmpeg-kit/wiki).
+A more detailed documentation is available under [Wiki](https://github.com/concept7/ffmpeg-kit/wiki).
 
 ### 13. Test Applications
 
@@ -191,7 +193,7 @@ burning subtitles, video stabilisation, pipe operations and concurrent command e
 
 `FFmpegKit` library alone is licensed under the `LGPL v3.0`.
 
-`FFmpegKit` bundles (`.aar` archives, `frameworks`, `xcframeworks`), which include both  `FFmpegKit` and `FFmpeg`
+`FFmpegKit` bundles (`.aar` archives, `frameworks`, `xcframeworks`), which include both `FFmpegKit` and `FFmpeg`
 libraries, are also licensed under the `LGPL v3.0`. However, if the source code is built using the optional
 `--enable-gpl` flag or prebuilt binaries with `-gpl` postfix are used, then `FFmpegKit` bundles become subject to the
 `GPL v3.0`. Because, `FFmpeg` is licensed under the `GPL v3.0` in those bundles. And that makes the whole bundle
@@ -202,8 +204,8 @@ libraries. Thus, `FFmpeg` libraries created by `FFmpegKit` are licensed under th
 `--enable-gpl` is provided they become subject to `GPL v3.0`. That is how prebuilt binaries with `-gpl` postfix are
 compiled.
 
-Refer to [Licenses](https://github.com/arthenica/ffmpeg-kit/wiki/Licenses) to see the licenses of all libraries.
-[Trademark](https://github.com/arthenica/ffmpeg-kit/wiki/Trademark) lists the trademarks used in the `FFmpegKit`
+Refer to [Licenses](https://github.com/concept7/ffmpeg-kit/wiki/Licenses) to see the licenses of all libraries.
+[Trademark](https://github.com/concept7/ffmpeg-kit/wiki/Trademark) lists the trademarks used in the `FFmpegKit`
 documentation.
 
 ### 15. Patents
@@ -219,7 +221,7 @@ distribute that library, then you are subject to pay MPEG LA licensing fees. Ref
 
 ### 16. Contributing
 
-See our [CONTRIBUTING](https://github.com/arthenica/ffmpeg-kit/blob/main/CONTRIBUTING.md) guide.
+See our [CONTRIBUTING](https://github.com/concept7/ffmpeg-kit/blob/main/CONTRIBUTING.md) guide.
 
 ### 17. See Also
 
