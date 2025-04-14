@@ -1,9 +1,11 @@
 # FFmpegKit for iOS, macOS and tvOS
 
 ### 1. Features
+
 #### 1.1 iOS
+
 - Supports `iOS SDK 12.1+` on Main releases and `iOS SDK 10+` on LTS releases
-- Includes `armv7`, `armv7s`, `arm64`, `arm64-simulator`, `arm64e`, `i386`, `x86_64`, `x86_64-mac-catalyst` and 
+- Includes `armv7`, `armv7s`, `arm64`, `arm64-simulator`, `arm64e`, `i386`, `x86_64`, `x86_64-mac-catalyst` and
   `arm64-mac-catalyst` architectures
 - Objective-C API
 - Camera access
@@ -12,6 +14,7 @@
 - Creates shared `frameworks` and `xcframeworks`
 
 #### 1.2 macOS
+
 - Supports `macOS SDK 10.15+` on Main releases and `macOS SDK 10.12+` on LTS releases
 - Includes `arm64` and `x86_64` architectures
 - Objective-C API
@@ -21,6 +24,7 @@
 - Creates shared `frameworks` and `xcframeworks`
 
 #### 1.3 tvOS
+
 - Supports `tvOS SDK 11.0+` on Main releases and `tvOS SDK 10.0+` on LTS releases
 - Includes `arm64`, `arm64-simulator` and `x86_64` architectures
 - Objective-C API
@@ -35,7 +39,7 @@ for a platform.
 
 Optionally, use `apple.sh` to combine bundles created by these three scripts in a single bundle.
 
-Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `ios.sh`, `macos.sh` and 
+Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `ios.sh`, `macos.sh` and
 `tvos.sh` need network connectivity and internet access to `github.com` in order to download the source code of
 `FFmpeg` and external libraries enabled.
 
@@ -106,196 +110,199 @@ All libraries created can be found under the `prebuilt` directory.
 
 #### 3.1 Objective API
 
-1. Add `FFmpegKit` dependency to your `Podfile` in `ffmpeg-kit-<platform>-<package name>` pattern. Use one of the 
-   `FFmpegKit` package names given in the project [README](https://github.com/tanersener/ffmpeg-kit).
+1. Add `FFmpegKit` dependency to your `Podfile` in `ffmpeg-kit-<platform>-<package name>` pattern. Use one of the
+   `FFmpegKit` package names given in the project [README](https://github.com/concept7/ffmpeg-kit-react-native).
 
-    - iOS
-    ```yaml
-    pod 'ffmpeg-kit-ios-full', '~> 4.5.1'
-    ```
+   - iOS
 
-    - macOS
-    ```yaml
-    pod 'ffmpeg-kit-macos-full', '~> 4.5.1'
-    ```
+   ```yaml
+   pod 'ffmpeg-kit-ios-full', '~> 4.5.1'
+   ```
 
-    - tvOS
-    ```yaml
-    pod 'ffmpeg-kit-tvos-full', '~> 4.5.1'
-    ```
+   - macOS
+
+   ```yaml
+   pod 'ffmpeg-kit-macos-full', '~> 4.5.1'
+   ```
+
+   - tvOS
+
+   ```yaml
+   pod 'ffmpeg-kit-tvos-full', '~> 4.5.1'
+   ```
 
 2. Execute synchronous `FFmpeg` commands.
 
-    ```objectivec
-    #include <ffmpegkit/FFmpegKit.h>
+   ```objectivec
+   #include <ffmpegkit/FFmpegKit.h>
 
-    FFmpegSession *session = [FFmpegKit execute:@"-i file1.mp4 -c:v mpeg4 file2.mp4"];
-    ReturnCode *returnCode = [session getReturnCode];
-    if ([ReturnCode isSuccess:returnCode]) {
+   FFmpegSession *session = [FFmpegKit execute:@"-i file1.mp4 -c:v mpeg4 file2.mp4"];
+   ReturnCode *returnCode = [session getReturnCode];
+   if ([ReturnCode isSuccess:returnCode]) {
 
-        // SUCCESS
+       // SUCCESS
 
-    } else if ([ReturnCode isCancel:returnCode]) {
+   } else if ([ReturnCode isCancel:returnCode]) {
 
-        // CANCEL
+       // CANCEL
 
-    } else {
+   } else {
 
-        // FAILURE
-        NSLog(@"Command failed with state %@ and rc %@.%@", [FFmpegKitConfig sessionStateToString:[session getState]], returnCode, [session getFailStackTrace]);
+       // FAILURE
+       NSLog(@"Command failed with state %@ and rc %@.%@", [FFmpegKitConfig sessionStateToString:[session getState]], returnCode, [session getFailStackTrace]);
 
-    }
-    ```
+   }
+   ```
 
 3. Each `execute` call (sync or async) creates a new session. Access every detail about your execution from the
    session created.
 
-    ```objectivec
-    FFmpegSession *session = [FFmpegKit execute:@"-i file1.mp4 -c:v mpeg4 file2.mp4"];
+   ```objectivec
+   FFmpegSession *session = [FFmpegKit execute:@"-i file1.mp4 -c:v mpeg4 file2.mp4"];
 
-    // Unique session id created for this execution
-    long sessionId = [session getSessionId];
+   // Unique session id created for this execution
+   long sessionId = [session getSessionId];
 
-    // Command arguments as a single string
-    NSString *command = [session getCommand];
+   // Command arguments as a single string
+   NSString *command = [session getCommand];
 
-    // Command arguments
-    NSArray *arguments = [session getArguments];
-   
-    // State of the execution. Shows whether it is still running or completed
-    SessionState state = [session getState];
+   // Command arguments
+   NSArray *arguments = [session getArguments];
 
-    // Return code for completed sessions. Will be null if session is still running or ends with a failure
-    ReturnCode *returnCode = [session getReturnCode];
+   // State of the execution. Shows whether it is still running or completed
+   SessionState state = [session getState];
 
-    NSDate *startTime =[session getStartTime];
-    NSDate *endTime =[session getEndTime];
-    long duration =[session getDuration];
+   // Return code for completed sessions. Will be null if session is still running or ends with a failure
+   ReturnCode *returnCode = [session getReturnCode];
 
-    // Console output generated for this execution
-    NSString *output = [session getOutput];
+   NSDate *startTime =[session getStartTime];
+   NSDate *endTime =[session getEndTime];
+   long duration =[session getDuration];
 
-    // The stack trace if FFmpegKit fails to run a command
-    NSString *failStackTrace = [session getFailStackTrace];
+   // Console output generated for this execution
+   NSString *output = [session getOutput];
 
-    // The list of logs generated for this execution
-    NSArray *logs = [session getLogs];
+   // The stack trace if FFmpegKit fails to run a command
+   NSString *failStackTrace = [session getFailStackTrace];
 
-    // The list of statistics generated for this execution
-    NSArray *statistics = [session getStatistics];
-    ```
+   // The list of logs generated for this execution
+   NSArray *logs = [session getLogs];
+
+   // The list of statistics generated for this execution
+   NSArray *statistics = [session getStatistics];
+   ```
 
 4. Execute asynchronous `FFmpeg` commands by providing session specific `execute`/`log`/`session` callbacks.
 
-    ```objectivec
-    FFmpegSession* session = [FFmpegKit executeAsync:@"-i file1.mp4 -c:v mpeg4 file2.mp4" withCompleteCallback:^(FFmpegSession* session){
-        SessionState state = [session getState];
-        ReturnCode *returnCode = [session getReturnCode];
+   ```objectivec
+   FFmpegSession* session = [FFmpegKit executeAsync:@"-i file1.mp4 -c:v mpeg4 file2.mp4" withCompleteCallback:^(FFmpegSession* session){
+       SessionState state = [session getState];
+       ReturnCode *returnCode = [session getReturnCode];
 
-        // CALLED WHEN SESSION IS EXECUTED
+       // CALLED WHEN SESSION IS EXECUTED
 
-        NSLog(@"FFmpeg process exited with state %@ and rc %@.%@", [FFmpegKitConfig sessionStateToString:state], returnCode, [session getFailStackTrace]);
+       NSLog(@"FFmpeg process exited with state %@ and rc %@.%@", [FFmpegKitConfig sessionStateToString:state], returnCode, [session getFailStackTrace]);
 
-    } withLogCallback:^(Log *log) {
+   } withLogCallback:^(Log *log) {
 
-        // CALLED WHEN SESSION PRINTS LOGS
+       // CALLED WHEN SESSION PRINTS LOGS
 
-    } withStatisticsCallback:^(Statistics *statistics) {
+   } withStatisticsCallback:^(Statistics *statistics) {
 
-        // CALLED WHEN SESSION GENERATES STATISTICS
+       // CALLED WHEN SESSION GENERATES STATISTICS
 
-    }];
-    ```
+   }];
+   ```
 
 5. Execute `FFprobe` commands.
 
-    - Synchronous
+   - Synchronous
 
-    ```objectivec
-    FFprobeSession *session = [FFprobeKit execute:ffprobeCommand];
+   ```objectivec
+   FFprobeSession *session = [FFprobeKit execute:ffprobeCommand];
 
-    if ([ReturnCode isSuccess:[session getReturnCode]]) {
-        NSLog(@"Command failed. Please check output for the details.");
-    }
-    ```
+   if ([ReturnCode isSuccess:[session getReturnCode]]) {
+       NSLog(@"Command failed. Please check output for the details.");
+   }
+   ```
 
    - Asynchronous
 
-    ```objectivec
-    [FFprobeKit executeAsync:ffmpegCommand withCompleteCallback:^(FFprobeSession* session) {
+   ```objectivec
+   [FFprobeKit executeAsync:ffmpegCommand withCompleteCallback:^(FFprobeSession* session) {
 
-        CALLED WHEN SESSION IS EXECUTED
+       CALLED WHEN SESSION IS EXECUTED
 
-    }];
-    ```
+   }];
+   ```
 
 6. Get media information for a file.
 
-    ```objectivec
-    MediaInformationSession *mediaInformation = [FFprobeKit getMediaInformation:"<file path or uri>"];
-    MediaInformation *mediaInformation =[mediaInformation getMediaInformation];
-    ```
+   ```objectivec
+   MediaInformationSession *mediaInformation = [FFprobeKit getMediaInformation:"<file path or uri>"];
+   MediaInformation *mediaInformation =[mediaInformation getMediaInformation];
+   ```
 
 7. Stop ongoing `FFmpeg` operations.
 
    - Stop all executions
-       ```objectivec
-       [FFmpegKit cancel];
-       ```
+     ```objectivec
+     [FFmpegKit cancel];
+     ```
    - Stop a specific session
-       ```objectivec
-       [FFmpegKit cancel:sessionId];
-       ```
+     ```objectivec
+     [FFmpegKit cancel:sessionId];
+     ```
 
 8. Get previous `FFmpeg` and `FFprobe` sessions from session history.
 
-    ```objectivec
-    NSArray* sessions = [FFmpegKitConfig getSessions];
-    for (int i = 0; i < [sessions count]; i++) {
-        id<Session> session = [sessions objectAtIndex:i];
-        NSLog(@"Session %d = id: %ld, startTime: %@, duration: %ld, state:%@, returnCode:%@.\n",
-            i,
-            [session getSessionId],
-            [session getStartTime],
-            [session getDuration],
-            [FFmpegKitConfig sessionStateToString:[session getState]],
-            [session getReturnCode]);
-    }
-    ```
+   ```objectivec
+   NSArray* sessions = [FFmpegKitConfig getSessions];
+   for (int i = 0; i < [sessions count]; i++) {
+       id<Session> session = [sessions objectAtIndex:i];
+       NSLog(@"Session %d = id: %ld, startTime: %@, duration: %ld, state:%@, returnCode:%@.\n",
+           i,
+           [session getSessionId],
+           [session getStartTime],
+           [session getDuration],
+           [FFmpegKitConfig sessionStateToString:[session getState]],
+           [session getReturnCode]);
+   }
+   ```
 
 9. Enable global callbacks.
 
-    - Session type specific Complete Callbacks, called when an async session has been completed
+   - Session type specific Complete Callbacks, called when an async session has been completed
 
-        ```objectivec
-        [FFmpegKitConfig enableFFmpegSessionCompleteCallback:^(FFmpegSession* session) {
-            ...
-        }];
+     ```objectivec
+     [FFmpegKitConfig enableFFmpegSessionCompleteCallback:^(FFmpegSession* session) {
+         ...
+     }];
 
-        [FFmpegKitConfig enableFFprobeSessionCompleteCallback:^(FFprobeSession* session) {
-            ...
-        }];
+     [FFmpegKitConfig enableFFprobeSessionCompleteCallback:^(FFprobeSession* session) {
+         ...
+     }];
 
-        [FFmpegKitConfig enableMediaInformationSessionCompleteCallback:^(MediaInformationSession* session) {
-            ...
-        }];
-        ```
+     [FFmpegKitConfig enableMediaInformationSessionCompleteCallback:^(MediaInformationSession* session) {
+         ...
+     }];
+     ```
 
-    - Log Callback, called when a session generates logs
+   - Log Callback, called when a session generates logs
 
-        ```objectivec
-        [FFmpegKitConfig enableLogCallback:^(Log *log) {
-            ...
-        }];
-        ```
+     ```objectivec
+     [FFmpegKitConfig enableLogCallback:^(Log *log) {
+         ...
+     }];
+     ```
 
-    - Statistics Callback, called when a session generates statistics
+   - Statistics Callback, called when a session generates statistics
 
-        ```objectivec
-        [FFmpegKitConfig enableStatisticsCallback:^(Statistics *statistics) {
-            ...
-        }];
-        ```
+     ```objectivec
+     [FFmpegKitConfig enableStatisticsCallback:^(Statistics *statistics) {
+         ...
+     }];
+     ```
 
 10. Ignore the handling of a signal. Required by `Mono` and frameworks that use `Mono`, e.g. `Unity` and `Xamarin`.
 
@@ -311,5 +318,5 @@ All libraries created can be found under the `prebuilt` directory.
 
 ### 4. Test Application
 
-You can see how `FFmpegKit` is used inside an application by running `iOS`, `macOS` and `tvOS` test applications 
-developed under the [FFmpegKit Test](https://github.com/tanersener/ffmpeg-kit-test) project.
+You can see how `FFmpegKit` is used inside an application by running `iOS`, `macOS` and `tvOS` test applications
+developed under the [FFmpegKit Test](https://github.com/concept7/ffmpeg-kit-react-native-test) project.

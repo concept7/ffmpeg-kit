@@ -1,6 +1,7 @@
 # FFmpegKit for Android
 
 ### 1. Features
+
 - Supports `API Level 24+` on Main releases and `API Level 16+` on LTS releases
 - Includes `arm-v7a`, `arm-v7a-neon`, `arm64-v8a`, `x86` and `x86_64` architectures
 - Can handle Storage Access Framework (SAF) Uris
@@ -10,10 +11,10 @@
 
 ### 2. Building
 
-Run `android.sh` at project root directory to build `ffmpeg-kit` and `ffmpeg` shared libraries. 
+Run `android.sh` at project root directory to build `ffmpeg-kit` and `ffmpeg` shared libraries.
 
-Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `android.sh` needs 
-network connectivity and internet access to `github.com` in order to download the source code of `FFmpeg` and 
+Please note that `FFmpegKit` project repository includes the source code of `FFmpegKit` only. `android.sh` needs
+network connectivity and internet access to `github.com` in order to download the source code of `FFmpeg` and
 external libraries enabled.
 
 #### 2.1 Prerequisites
@@ -21,8 +22,9 @@ external libraries enabled.
 `android.sh` requires the following tools and packages.
 
 ##### 2.1.1 Android Tools
-   - Android SDK Build Tools
-   - Android NDK r22b or later with LLDB and CMake (See [#292](https://github.com/tanersener/ffmpeg-kit/issues/292) if you want to use NDK r23b)
+
+- Android SDK Build Tools
+- Android NDK r22b or later with LLDB and CMake (See [#292](https://github.com/concept7/ffmpeg-kit-react-native/issues/292) if you want to use NDK r23b)
 
 ##### 2.1.2 Packages
 
@@ -32,7 +34,7 @@ Use your package manager (apt, yum, dnf, brew, etc.) to install the following pa
 autoconf automake libtool pkg-config curl cmake gcc gperf texinfo yasm nasm bison autogen git wget autopoint meson ninja
 ```
 
-##### 2.1.3 Environment Variables 
+##### 2.1.3 Environment Variables
 
 Set `ANDROID_SDK_ROOT` and `ANDROID_NDK_ROOT` environment variables before running `android.sh`.
 
@@ -67,251 +69,252 @@ All libraries created by `android.sh` can be found under the `prebuilt` director
 
 #### 3.1 Android API
 
-1. Declare `mavenCentral` repository and add `FFmpegKit` dependency to your `build.gradle` in 
-   `ffmpeg-kit-<package name>` pattern. Use one of the `FFmpegKit` package names given in the 
-   project [README](https://github.com/tanersener/ffmpeg-kit).
+1. Declare `mavenCentral` repository and add `FFmpegKit` dependency to your `build.gradle` in
+   `ffmpeg-kit-<package name>` pattern. Use one of the `FFmpegKit` package names given in the
+   project [README](https://github.com/concept7/ffmpeg-kit-react-native).
 
-    ```yaml
-    repositories {
-        mavenCentral()
-    }
+   ```yaml
+   repositories {
+   mavenCentral()
+   }
 
-    dependencies {
-        implementation 'com.arthenica:ffmpeg-kit-full:4.5.1'
-    }
-    ```
+   dependencies {
+   implementation 'com.arthenica:ffmpeg-kit-full:4.5.1'
+   }
+   ```
 
 2. Execute synchronous `FFmpeg` commands.
 
-    ```java
-    import com.arthenica.ffmpegkit.FFmpegKit;
+   ```java
+   import com.arthenica.ffmpegkit.FFmpegKit;
 
-    FFmpegSession session = FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 file2.mp4");
-    if (ReturnCode.isSuccess(session.getReturnCode())) {
+   FFmpegSession session = FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 file2.mp4");
+   if (ReturnCode.isSuccess(session.getReturnCode())) {
 
-        // SUCCESS
+       // SUCCESS
 
-    } else if (ReturnCode.isCancel(session.getReturnCode())) {
+   } else if (ReturnCode.isCancel(session.getReturnCode())) {
 
-        // CANCEL
+       // CANCEL
 
-    } else {
+   } else {
 
-        // FAILURE
-        Log.d(TAG, String.format("Command failed with state %s and rc %s.%s", session.getState(), session.getReturnCode(), session.getFailStackTrace()));
+       // FAILURE
+       Log.d(TAG, String.format("Command failed with state %s and rc %s.%s", session.getState(), session.getReturnCode(), session.getFailStackTrace()));
 
-    }
-    ```
+   }
+   ```
 
-3. Each `execute` call (sync or async) creates a new session. Access every detail about your execution from the 
+3. Each `execute` call (sync or async) creates a new session. Access every detail about your execution from the
    session created.
 
-    ```java
-    FFmpegSession session = FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 file2.mp4");
+   ```java
+   FFmpegSession session = FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 file2.mp4");
 
-    // Unique session id created for this execution
-    long sessionId = session.getSessionId();
+   // Unique session id created for this execution
+   long sessionId = session.getSessionId();
 
-    // Command arguments as a single string
-    String command = session.getCommand();
+   // Command arguments as a single string
+   String command = session.getCommand();
 
-    // Command arguments
-    String[] arguments = session.getArguments();
+   // Command arguments
+   String[] arguments = session.getArguments();
 
-    // State of the execution. Shows whether it is still running or completed
-    SessionState state = session.getState();
+   // State of the execution. Shows whether it is still running or completed
+   SessionState state = session.getState();
 
-    // Return code for completed sessions. Will be null if session is still running or ends with a failure
-    ReturnCode returnCode = session.getReturnCode();
+   // Return code for completed sessions. Will be null if session is still running or ends with a failure
+   ReturnCode returnCode = session.getReturnCode();
 
-    Date startTime = session.getStartTime();
-    Date endTime = session.getEndTime();
-    long duration = session.getDuration();
+   Date startTime = session.getStartTime();
+   Date endTime = session.getEndTime();
+   long duration = session.getDuration();
 
-    // Console output generated for this execution
-    String output = session.getOutput();
+   // Console output generated for this execution
+   String output = session.getOutput();
 
-    // The stack trace if FFmpegKit fails to run a command
-    String failStackTrace = session.getFailStackTrace();
+   // The stack trace if FFmpegKit fails to run a command
+   String failStackTrace = session.getFailStackTrace();
 
-    // The list of logs generated for this execution
-    List<com.arthenica.ffmpegkit.Log> logs = session.getLogs();
+   // The list of logs generated for this execution
+   List<com.arthenica.ffmpegkit.Log> logs = session.getLogs();
 
-    // The list of statistics generated for this execution
-    List<Statistics> statistics = session.getStatistics();
-    ```
+   // The list of statistics generated for this execution
+   List<Statistics> statistics = session.getStatistics();
+   ```
 
 4. Execute asynchronous `FFmpeg` commands by providing session specific `execute`/`log`/`session` callbacks.
 
-    ```java
-    FFmpegKit.executeAsync("-i file1.mp4 -c:v mpeg4 file2.mp4", new FFmpegSessionCompleteCallback() {
+   ```java
+   FFmpegKit.executeAsync("-i file1.mp4 -c:v mpeg4 file2.mp4", new FFmpegSessionCompleteCallback() {
 
-        @Override
-        public void apply(FFmpegSession session) {
-            SessionState state = session.getState();
-            ReturnCode returnCode = session.getReturnCode();
+       @Override
+       public void apply(FFmpegSession session) {
+           SessionState state = session.getState();
+           ReturnCode returnCode = session.getReturnCode();
 
-            // CALLED WHEN SESSION IS EXECUTED
+           // CALLED WHEN SESSION IS EXECUTED
 
-            Log.d(TAG, String.format("FFmpeg process exited with state %s and rc %s.%s", state, returnCode, session.getFailStackTrace()));
-        }
-    }, new LogCallback() {
+           Log.d(TAG, String.format("FFmpeg process exited with state %s and rc %s.%s", state, returnCode, session.getFailStackTrace()));
+       }
+   }, new LogCallback() {
 
-        @Override
-        public void apply(com.arthenica.ffmpegkit.Log log) {
+       @Override
+       public void apply(com.arthenica.ffmpegkit.Log log) {
 
-            // CALLED WHEN SESSION PRINTS LOGS
+           // CALLED WHEN SESSION PRINTS LOGS
 
-        }
-    }, new StatisticsCallback() {
+       }
+   }, new StatisticsCallback() {
 
-        @Override
-        public void apply(Statistics statistics) {
+       @Override
+       public void apply(Statistics statistics) {
 
-            // CALLED WHEN SESSION GENERATES STATISTICS
+           // CALLED WHEN SESSION GENERATES STATISTICS
 
-        }
-    });
-    ```
+       }
+   });
+   ```
 
 5. Execute `FFprobe` commands.
 
-    - Synchronous
+   - Synchronous
 
-    ```java
-    FFprobeSession session = FFprobeKit.execute(ffprobeCommand);
+   ```java
+   FFprobeSession session = FFprobeKit.execute(ffprobeCommand);
 
-    if (!ReturnCode.isSuccess(session.getReturnCode())) {
-        Log.d(TAG, "Command failed. Please check output for the details.");
-    }
-    ```
+   if (!ReturnCode.isSuccess(session.getReturnCode())) {
+       Log.d(TAG, "Command failed. Please check output for the details.");
+   }
+   ```
 
-    - Asynchronous
+   - Asynchronous
 
-    ```java
-    FFprobeKit.executeAsync(ffprobeCommand, new FFprobeSessionCompleteCallback() {
-   
-        @Override
-        public void apply(FFprobeSession session) {
+   ```java
+   FFprobeKit.executeAsync(ffprobeCommand, new FFprobeSessionCompleteCallback() {
 
-            CALLED WHEN SESSION IS EXECUTED
+       @Override
+       public void apply(FFprobeSession session) {
 
-        }
-    });
-    ```
+           CALLED WHEN SESSION IS EXECUTED
+
+       }
+   });
+   ```
 
 6. Get media information for a file.
 
-    ```java
-    MediaInformationSession mediaInformation = FFprobeKit.getMediaInformation("<file path or uri>");
-    mediaInformation.getMediaInformation();
-    ```
+   ```java
+   MediaInformationSession mediaInformation = FFprobeKit.getMediaInformation("<file path or uri>");
+   mediaInformation.getMediaInformation();
+   ```
 
 7. Stop ongoing `FFmpeg` operations.
 
-    - Stop all executions
-        ```java
-        FFmpegKit.cancel();
-        ```
-    - Stop a specific session
-        ```java
-        FFmpegKit.cancel(sessionId);
-        ```
+   - Stop all executions
+     ```java
+     FFmpegKit.cancel();
+     ```
+   - Stop a specific session
+     ```java
+     FFmpegKit.cancel(sessionId);
+     ```
 
 8. Convert Storage Access Framework (SAF) Uris into paths that can be read or written by `FFmpegKit`.
+
    - Reading a file:
-  
-        ```java
-        Uri safUri = intent.getData();
-        String inputVideoPath = FFmpegKitConfig.getSafParameterForRead(requireContext(), safUri);
-        FFmpegKit.execute("-i " + inputVideoPath + " -c:v mpeg4 file2.mp4");
-        ```
-    
-    - Writing to a file:
-  
-        ```java
-        Uri safUri = intent.getData();
-        String outputVideoPath = FFmpegKitConfig.getSafParameterForWrite(requireContext(), safUri);
-        FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 " + outputVideoPath);
-        ```
+
+     ```java
+     Uri safUri = intent.getData();
+     String inputVideoPath = FFmpegKitConfig.getSafParameterForRead(requireContext(), safUri);
+     FFmpegKit.execute("-i " + inputVideoPath + " -c:v mpeg4 file2.mp4");
+     ```
+
+   - Writing to a file:
+
+     ```java
+     Uri safUri = intent.getData();
+     String outputVideoPath = FFmpegKitConfig.getSafParameterForWrite(requireContext(), safUri);
+     FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 " + outputVideoPath);
+     ```
 
    - Writing to a file in a custom mode.
 
-       ```java
-       Uri safUri = intent.getData();
-       String path = FFmpegKitConfig.getSafParameter(requireContext(), safUri, "rw");
-       FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 " + path);
-       ```
+     ```java
+     Uri safUri = intent.getData();
+     String path = FFmpegKitConfig.getSafParameter(requireContext(), safUri, "rw");
+     FFmpegKit.execute("-i file1.mp4 -c:v mpeg4 " + path);
+     ```
 
 9. Get previous `FFmpeg` and `FFprobe` sessions from session history.
 
-    ```java
-    List<Session> sessions = FFmpegKitConfig.getSessions();
-    for (int i = 0; i < sessions.size(); i++) {
-        Session session = sessions.get(i);
-        Log.d(TAG, String.format("Session %d = id:%d, startTime:%s, duration:%s, state:%s, returnCode:%s.",
-              i,
-              session.getSessionId(),
-              session.getStartTime(),
-              session.getDuration(),
-              session.getState(),
-              session.getReturnCode()));
-    }
-    ```
+   ```java
+   List<Session> sessions = FFmpegKitConfig.getSessions();
+   for (int i = 0; i < sessions.size(); i++) {
+       Session session = sessions.get(i);
+       Log.d(TAG, String.format("Session %d = id:%d, startTime:%s, duration:%s, state:%s, returnCode:%s.",
+             i,
+             session.getSessionId(),
+             session.getStartTime(),
+             session.getDuration(),
+             session.getState(),
+             session.getReturnCode()));
+   }
+   ```
 
 10. Enable global callbacks.
 
     - Session type specific Complete Callbacks, called when an async session has been completed
 
-        ```java
-        FFmpegKitConfig.enableFFmpegSessionCompleteCallback(new FFmpegSessionCompleteCallback() {
+      ```java
+      FFmpegKitConfig.enableFFmpegSessionCompleteCallback(new FFmpegSessionCompleteCallback() {
 
-            @Override
-            public void apply(FFmpegSession session) {
+          @Override
+          public void apply(FFmpegSession session) {
 
-            }
-        });
+          }
+      });
 
-        FFmpegKitConfig.enableFFprobeSessionCompleteCallback(new FFprobeSessionCompleteCallback() {
+      FFmpegKitConfig.enableFFprobeSessionCompleteCallback(new FFprobeSessionCompleteCallback() {
 
-            @Override
-            public void apply(FFprobeSession session) {
+          @Override
+          public void apply(FFprobeSession session) {
 
-            }
-        });
+          }
+      });
 
-        FFmpegKitConfig.enableMediaInformationSessionCompleteCallback(new MediaInformationSessionCompleteCallback() {
+      FFmpegKitConfig.enableMediaInformationSessionCompleteCallback(new MediaInformationSessionCompleteCallback() {
 
-            @Override
-            public void apply(MediaInformationSession session) {
+          @Override
+          public void apply(MediaInformationSession session) {
 
-            }
-        });
-        ```
+          }
+      });
+      ```
 
     - Log Callback, called when a session generates logs
 
-        ```java
-        FFmpegKitConfig.enableLogCallback(new LogCallback() {
-    
-            @Override
-            public void apply(final com.arthenica.ffmpegkit.Log log) {
-                ...
-            }
-        });
-        ```
+      ```java
+      FFmpegKitConfig.enableLogCallback(new LogCallback() {
+
+          @Override
+          public void apply(final com.arthenica.ffmpegkit.Log log) {
+              ...
+          }
+      });
+      ```
 
     - Statistics Callback, called when a session generates statistics
 
-        ```java
-        FFmpegKitConfig.enableStatisticsCallback(new StatisticsCallback() {
+      ```java
+      FFmpegKitConfig.enableStatisticsCallback(new StatisticsCallback() {
 
-            @Override
-            public void apply(final Statistics newStatistics) {
-                ...
-            }
-        });
-        ```
+          @Override
+          public void apply(final Statistics newStatistics) {
+              ...
+          }
+      });
+      ```
 
 11. Ignore the handling of a signal. Required by `Mono` and frameworks that use `Mono`, e.g. `Unity` and `Xamarin`.
 
@@ -328,4 +331,4 @@ All libraries created by `android.sh` can be found under the `prebuilt` director
 ### 4. Test Application
 
 You can see how `FFmpegKit` is used inside an application by running `Android` test applications developed under the
-[FFmpegKit Test](https://github.com/tanersener/ffmpeg-kit-test) project.
+[FFmpegKit Test](https://github.com/concept7/ffmpeg-kit-react-native-test) project.

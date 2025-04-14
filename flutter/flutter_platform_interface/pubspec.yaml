@@ -1,8 +1,8 @@
 name: ffmpeg_kit_flutter_platform_interface
 description: A common platform interface for ffmpeg_kit_flutter plugin.
-repository: https://github.com/tanersener/ffmpeg-kit
-issue_tracker: https://github.com/tanersener/ffmpeg-kit/issues
-homepage: https://github.com/tanersener/ffmpeg-kit
+repository: https://github.com/concept7/ffmpeg-kit-react-native
+issue_tracker: https://github.com/concept7/ffmpeg-kit-react-native/issues
+homepage: https://github.com/concept7/ffmpeg-kit-react-native
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
 version: 0.2.1

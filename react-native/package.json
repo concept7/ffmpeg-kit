@@ -18,13 +18,13 @@
     "ffmpeg-kit",
     "ios"
   ],
-  "repository": "https://github.com/tanersener/ffmpeg-kit",
+  "repository": "https://github.com/concept7/ffmpeg-kit-react-native",
   "author": "Taner Sener <tanersener@gmail.com> (https://github.com/tanersener)",
   "license": "LGPL-3.0",
   "bugs": {
-    "url": "https://github.com/tanersener/ffmpeg-kit/issues"
+    "url": "https://github.com/concept7/ffmpeg-kit-react-native/issues"
   },
-  "homepage": "https://github.com/tanersener/ffmpeg-kit",
+  "homepage": "https://github.com/concept7/ffmpeg-kit-react-native",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
